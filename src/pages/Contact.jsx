@@ -45,7 +45,7 @@ export default function Contact() {
       <div className="mx-auto max-w-lg">
         <p className="font-mono text-xs uppercase tracking-widest text-grid">Contact</p>
         <h1 className="mt-3 font-display text-3xl font-bold text-ink lg:text-4xl">
-          Talk to the Ogigrid Smart Solutions team
+          Talk to the OSS team
         </h1>
         <p className="mt-3 text-slate">
           General questions, partnership inquiries, or anything that doesn't need a full demo.

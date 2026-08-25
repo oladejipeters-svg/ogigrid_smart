@@ -8,7 +8,7 @@ const FAQ = [
   },
   {
     q: "Do you support migrating from an existing system?",
-    a: "Yes — our onboarding team maps your existing records into Ogigrid Smart Solutions before go-live.",
+    a: "Yes — our onboarding team maps your existing records into OSS before go-live.",
   },
   {
     q: "What does a contract term look like?",

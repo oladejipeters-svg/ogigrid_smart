@@ -2,6 +2,8 @@ import GridLedgerBackground from "../components/GridLedgerBackground.jsx";
 import LedgerCard from "../components/LedgerCard.jsx";
 import Button from "../components/Button.jsx";
 import Reveal from "../components/Reveal.jsx";
+import ProductIcon from "../components/ProductIcon.jsx";
+import ProductShowcase from "../components/ProductShowcase.jsx";
 import { products } from "../data/products.js";
 
 const PAIN_POINTS = [
@@ -35,6 +37,8 @@ const LIFECYCLE = [
 export default function Home() {
   return (
     <div>
+      <ProductShowcase />
+
       {/* Hero */}
       <section className="relative overflow-hidden">
         <GridLedgerBackground nodeCount={6} />
@@ -47,7 +51,7 @@ export default function Home() {
               Every transfer, matched. Every term, closed on time.
             </h1>
             <p className="mt-5 max-w-lg text-base text-slate lg:text-lg">
-              Ogigrid Smart Solutions gives finance teams one platform for billing, collection, and bank
+              OSS gives finance teams one platform for billing, collection, and bank
               reconciliation — with AI that runs on your own servers, not ours.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -153,7 +157,8 @@ export default function Home() {
                 key={product.slug}
                 className="rounded-card border border-slate/10 p-6 transition-shadow hover:shadow-md"
               >
-                <p className="font-mono text-xs uppercase tracking-wide text-grid">{product.role}</p>
+                <ProductIcon name={product.icon} size="sm" />
+                <p className="mt-3 font-mono text-xs uppercase tracking-wide text-grid">{product.role}</p>
                 <h3 className="mt-1 font-display text-lg font-semibold text-ink">{product.name}</h3>
                 <p className="mt-2 text-sm text-slate">{product.description}</p>
               </Reveal>

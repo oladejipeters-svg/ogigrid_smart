@@ -30,9 +30,9 @@ export default function App() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/request-demo" element={<RequestDemo />} />
-          <Route path="/legal/privacy" element={<LegalPage title="Privacy Policy" />} />
-          <Route path="/legal/terms" element={<LegalPage title="Terms of Service" />} />
-          <Route path="/legal/data-security" element={<LegalPage title="Data Processing & Security" />} />
+          <Route path="/legal/privacy" element={<LegalPage slug="privacy" />} />
+          <Route path="/legal/terms" element={<LegalPage slug="terms" />} />
+          <Route path="/legal/data-security" element={<LegalPage slug="data-security" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

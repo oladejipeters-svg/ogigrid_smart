@@ -6,7 +6,7 @@ export default function LocalAISecurity() {
       <PageHeader
         eyebrow="Local AI & Security"
         title="The AI runs on your servers"
-        description="A plain-language look at how Ogigrid Smart Solutions handles data, and why nothing leaves your infrastructure."
+        description="A plain-language look at how OSS handles data, and why nothing leaves your infrastructure."
       />
       <section className="mx-auto max-w-content px-6 py-16">
         <div className="grid gap-10 lg:grid-cols-2">

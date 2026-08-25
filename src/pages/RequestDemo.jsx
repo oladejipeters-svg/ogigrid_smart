@@ -56,7 +56,7 @@ export default function RequestDemo() {
       <div className="mx-auto max-w-xl">
         <p className="font-mono text-xs uppercase tracking-widest text-grid">Request a Demo</p>
         <h1 className="mt-3 font-display text-3xl font-bold text-ink lg:text-4xl">
-          See Ogigrid Smart Solutions against your own numbers
+          See OSS against your own numbers
         </h1>
         <p className="mt-3 text-slate">
           Tell us about your institution and we'll set up a walkthrough with your finance team.

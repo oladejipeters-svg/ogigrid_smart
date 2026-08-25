@@ -11,13 +11,18 @@ export default {
         amber: "#F0A020",
         ledger: "#1B8F7A",
         slate: {
-          DEFAULT: "#6B7280",
+          DEFAULT: "#4A4F68",
         },
       },
       fontFamily: {
         display: ["General Sans", "system-ui", "sans-serif"],
         body: ["Public Sans", "system-ui", "sans-serif"],
         mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
+      },
+      fontSize: {
+        sm: ["0.875rem", "1.55rem"],
+        base: ["1rem", "1.7rem"],
+        lg: ["1.125rem", "1.8rem"],
       },
       maxWidth: {
         content: "1280px",
