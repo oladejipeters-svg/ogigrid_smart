@@ -6,8 +6,11 @@ const ROTATE_MS = 5000;
 
 export default function ProductShowcase() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [manuallyPaused, setManuallyPaused] = useState(false);
+  const [hovering, setHovering] = useState(false);
   const prefersReducedMotion = useRef(false);
+
+  const paused = manuallyPaused || hovering;
 
   useEffect(() => {
     prefersReducedMotion.current = window.matchMedia(
@@ -29,9 +32,9 @@ export default function ProductShowcase() {
 
   return (
     <section
-      className="relative overflow-hidden bg-ink py-14"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="relative overflow-hidden bg-ink-muted py-14"
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
       aria-roledescription="carousel"
       aria-label="Product showcase"
     >
@@ -42,11 +45,11 @@ export default function ProductShowcase() {
           </p>
           <button
             type="button"
-            onClick={() => setPaused((p) => !p)}
-            aria-pressed={paused}
+            onClick={() => setManuallyPaused((p) => !p)}
+            aria-pressed={manuallyPaused}
             className="rounded-full border border-white/20 px-3 py-1 text-xs text-white/70 transition-colors hover:text-white"
           >
-            {paused ? "Play" : "Pause"}
+            {manuallyPaused ? "Play" : "Pause"}
           </button>
         </div>
 

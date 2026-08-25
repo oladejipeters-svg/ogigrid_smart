@@ -10,6 +10,7 @@ const LINKS = [
   { to: "/pricing", label: "Pricing" },
   { to: "/about", label: "About" },
   { to: "/resources", label: "Resources" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {

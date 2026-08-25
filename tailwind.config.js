@@ -7,22 +7,18 @@ export default {
         // Section 3.1 of the OSS design documentation.
         porcelain: "#F6F7FB",
         ink: "#12142B",
+        "ink-muted": "#282B45",
         grid: "#2C3E9E",
         amber: "#F0A020",
         ledger: "#1B8F7A",
         slate: {
-          DEFAULT: "#4A4F68",
+          DEFAULT: "#6B7280",
         },
       },
       fontFamily: {
         display: ["General Sans", "system-ui", "sans-serif"],
         body: ["Public Sans", "system-ui", "sans-serif"],
         mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
-      },
-      fontSize: {
-        sm: ["0.875rem", "1.55rem"],
-        base: ["1rem", "1.7rem"],
-        lg: ["1.125rem", "1.8rem"],
       },
       maxWidth: {
         content: "1280px",

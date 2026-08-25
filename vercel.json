@@ -10,9 +10,6 @@
     }
   },
   "rewrites": [
-    {
-      "source": "/((?!api/|@vite|@react-refresh|src/)(?!.*\\.[^/]+$).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/((?!api/|@vite|@react-refresh|src/)(?!.*\\.[^/]+$).*)", "destination": "/index.html" }
   ]
 }

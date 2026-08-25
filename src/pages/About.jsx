@@ -1,6 +1,7 @@
 import PageHeader from "../components/PageHeader.jsx";
 import Reveal from "../components/Reveal.jsx";
 import Button from "../components/Button.jsx";
+import LedgerCard from "../components/LedgerCard.jsx";
 
 const BELIEFS = [
   {
@@ -27,8 +28,8 @@ export default function About() {
       />
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-content px-6">
-          <Reveal className="max-w-2xl space-y-5 text-sm leading-relaxed text-slate">
+        <div className="mx-auto grid max-w-content items-center gap-12 px-6 lg:grid-cols-2">
+          <Reveal className="space-y-5 text-sm leading-relaxed text-slate">
             <p>
               School bursars manage more money, with less infrastructure, than almost any
               other finance role. A mid-sized institution can move tens of millions of
@@ -48,6 +49,9 @@ export default function About() {
               every transfer, and every reconciliation with the same discipline a bank
               would — without asking a school to hire a finance team it doesn't have.
             </p>
+          </Reveal>
+          <Reveal className="lg:justify-self-end">
+            <LedgerCard />
           </Reveal>
         </div>
       </section>
@@ -91,7 +95,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-ink py-16">
+      <section className="bg-ink-muted py-16">
         <div className="mx-auto max-w-content px-6">
           <Reveal className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <div className="max-w-xl">

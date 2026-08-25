@@ -123,7 +123,7 @@ export default function Home() {
       </section>
 
       {/* Local AI trust strip */}
-      <section className="bg-ink py-16">
+      <section className="bg-ink-muted py-16">
         <div className="mx-auto max-w-content px-6">
           <Reveal className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
             <div>
