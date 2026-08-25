@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DemoRequest",
+  "type": "object",
+  "required": ["id", "institutionName", "contactName", "email", "status", "createdAt", "updatedAt"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "institutionName": { "type": "string" },
+    "institutionSize": { "type": ["string", "null"] },
+    "contactName": { "type": "string" },
+    "email": { "type": "string", "format": "email" },
+    "phone": { "type": ["string", "null"] },
+    "role": { "type": ["string", "null"] },
+    "message": { "type": ["string", "null"] },
+    "status": { "type": "string", "enum": ["NEW", "CONTACTED", "CLOSED"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}
