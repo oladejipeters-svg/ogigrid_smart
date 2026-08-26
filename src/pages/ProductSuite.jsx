@@ -22,11 +22,11 @@ export default function ProductSuite() {
                 <img
                   src={product.screenshot}
                   alt={`${product.name} interface`}
-                  className="h-44 w-full border-b border-slate/10 object-cover object-top"
+                  className="h-40 w-full border-b border-slate/10 object-cover object-top sm:h-48 lg:h-52"
                   loading="lazy"
                 />
               ) : (
-                <div className="flex h-44 items-center justify-center bg-porcelain">
+                <div className="flex h-40 items-center justify-center bg-porcelain sm:h-48 lg:h-52">
                   <ProductIcon name={product.icon} />
                 </div>
               )}

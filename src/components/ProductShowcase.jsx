@@ -63,7 +63,7 @@ export default function ProductShowcase() {
             key={current.slug}
             src={current.screenshot}
             alt={`${current.name} interface`}
-            className="h-[280px] w-full animate-reveal-up object-cover object-top sm:h-[420px]"
+            className="h-48 w-full animate-reveal-up object-cover object-top sm:h-64 md:h-80 lg:h-96 xl:h-[420px]"
           />
         </div>
 
