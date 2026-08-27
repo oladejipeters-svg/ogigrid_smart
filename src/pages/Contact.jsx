@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { submitContactMessage } from "../lib/api.js";
 
 const initialForm = { name: "", email: "", subject: "", message: "", company_website: "" };
 
 export default function Contact() {
+  const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,6 +46,15 @@ export default function Contact() {
   return (
     <section className="mx-auto max-w-content px-6 py-20 lg:py-24">
       <div className="mx-auto max-w-lg">
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="mb-6 inline-flex items-center gap-1.5 text-sm text-slate transition-colors hover:text-ink"
+        >
+          <ArrowLeft size={16} strokeWidth={2} />
+          Back
+        </button>
+
         <p className="font-mono text-xs uppercase tracking-widest text-grid">Contact</p>
         <h1 className="mt-3 font-display text-3xl font-bold text-ink lg:text-4xl">
           Talk to the OSS team

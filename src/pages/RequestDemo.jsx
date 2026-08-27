@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { submitDemoRequest } from "../lib/api.js";
 
 const initialForm = {
@@ -15,6 +17,7 @@ const initialForm = {
 const INSTITUTION_SIZES = ["Under 250 students", "250–1000 students", "1000–3000 students", "3000+ students"];
 
 export default function RequestDemo() {
+  const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -53,90 +56,110 @@ export default function RequestDemo() {
 
   return (
     <section className="mx-auto max-w-content px-6 py-20 lg:py-24">
-      <div className="mx-auto max-w-xl">
-        <p className="font-mono text-xs uppercase tracking-widest text-grid">Request a Demo</p>
-        <h1 className="mt-3 font-display text-3xl font-bold text-ink lg:text-4xl">
-          See OSS against your own numbers
-        </h1>
-        <p className="mt-3 text-slate">
-          Tell us about your institution and we'll set up a walkthrough with your finance team.
-        </p>
-
-        <form onSubmit={handleSubmit} className="relative mt-10 space-y-5">
-          {/* Honeypot: invisible to real users, off-screen rather than display:none
-              so simple form-filling bots still find and fill it. Never rendered
-              as a visible field, never labeled for assistive tech. */}
-          <input
-            type="text"
-            name="company_website"
-            value={form.company_website}
-            onChange={handleChange}
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-            className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
-          />
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field
-              label="Institution name"
-              name="institutionName"
-              value={form.institutionName}
-              onChange={handleChange}
-              required
-            />
-            <SelectField
-              label="Institution size"
-              name="institutionSize"
-              value={form.institutionSize}
-              onChange={handleChange}
-              options={INSTITUTION_SIZES}
-            />
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field
-              label="Your name"
-              name="contactName"
-              value={form.contactName}
-              onChange={handleChange}
-              required
-            />
-            <Field label="Your role" name="role" value={form.role} onChange={handleChange} />
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field
-              label="Email address"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-            <Field label="Phone (optional)" name="phone" value={form.phone} onChange={handleChange} />
-          </div>
-
-          <Field
-            label="What are you hoping to solve?"
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            as="textarea"
-          />
-
-          {status === "error" && (
-            <p className="rounded-card bg-amber/10 px-4 py-3 text-sm text-ink">{errorMessage}</p>
-          )}
-
+      <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div className="mx-auto w-full max-w-xl lg:mx-0">
           <button
-            type="submit"
-            disabled={status === "submitting"}
-            className="w-full rounded-card bg-amber px-5 py-3 font-display text-sm font-semibold text-ink transition-colors hover:bg-amber/90 disabled:opacity-60"
+            type="button"
+            onClick={() => navigate(-1)}
+            className="mb-6 inline-flex items-center gap-1.5 text-sm text-slate transition-colors hover:text-ink"
           >
-            {status === "submitting" ? "Submitting…" : "Request a Demo"}
+            <ArrowLeft size={16} strokeWidth={2} />
+            Back
           </button>
-        </form>
+
+          <p className="font-mono text-xs uppercase tracking-widest text-grid">Request a Demo</p>
+          <h1 className="mt-3 font-display text-3xl font-bold text-ink lg:text-4xl">
+            See OSS against your own numbers
+          </h1>
+          <p className="mt-3 text-slate">
+            Tell us about your institution and we'll set up a walkthrough with your finance team.
+          </p>
+
+          <form onSubmit={handleSubmit} className="relative mt-10 space-y-5">
+            {/* Honeypot: invisible to real users, off-screen rather than display:none
+                so simple form-filling bots still find and fill it. Never rendered
+                as a visible field, never labeled for assistive tech. */}
+            <input
+              type="text"
+              name="company_website"
+              value={form.company_website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+            />
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field
+                label="Institution name"
+                name="institutionName"
+                value={form.institutionName}
+                onChange={handleChange}
+                required
+              />
+              <SelectField
+                label="Institution size"
+                name="institutionSize"
+                value={form.institutionSize}
+                onChange={handleChange}
+                options={INSTITUTION_SIZES}
+              />
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field
+                label="Your name"
+                name="contactName"
+                value={form.contactName}
+                onChange={handleChange}
+                required
+              />
+              <Field label="Your role" name="role" value={form.role} onChange={handleChange} />
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field
+                label="Email address"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+              <Field label="Phone (optional)" name="phone" value={form.phone} onChange={handleChange} />
+            </div>
+
+            <Field
+              label="What are you hoping to solve?"
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              as="textarea"
+            />
+
+            {status === "error" && (
+              <p className="rounded-card bg-amber/10 px-4 py-3 text-sm text-ink">{errorMessage}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="w-full rounded-card bg-amber px-5 py-3 font-display text-sm font-semibold text-ink transition-colors hover:bg-amber/90 disabled:opacity-60"
+            >
+              {status === "submitting" ? "Submitting…" : "Request a Demo"}
+            </button>
+          </form>
+        </div>
+
+        <div className="lg:sticky lg:top-24">
+          <img
+            src="/photos/finance-leader.jpg"
+            alt=""
+            className="h-64 w-full rounded-card object-cover sm:h-80 lg:h-[560px]"
+            loading="lazy"
+          />
+        </div>
       </div>
     </section>
   );

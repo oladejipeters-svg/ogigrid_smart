@@ -74,20 +74,30 @@ export default function Home() {
 
       {/* Problem section */}
       <section className="bg-white py-20">
-        <div className="mx-auto max-w-content px-6">
-          <Reveal>
-            <h2 className="font-display text-2xl font-bold text-ink lg:text-3xl">
-              The finance team's day, as it actually is
-            </h2>
-          </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {PAIN_POINTS.map((point) => (
-              <Reveal key={point.title} className="rounded-card border border-slate/10 p-6">
-                <h3 className="font-display text-lg font-semibold text-ink">{point.title}</h3>
-                <p className="mt-2 text-sm text-slate">{point.body}</p>
-              </Reveal>
-            ))}
+        <div className="mx-auto grid max-w-content gap-12 px-6 lg:grid-cols-2 lg:items-center">
+          <div>
+            <Reveal>
+              <h2 className="font-display text-2xl font-bold text-ink lg:text-3xl">
+                The finance team's day, as it actually is
+              </h2>
+            </Reveal>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              {PAIN_POINTS.map((point) => (
+                <Reveal key={point.title} className="rounded-card border border-slate/10 p-6">
+                  <h3 className="font-display text-lg font-semibold text-ink">{point.title}</h3>
+                  <p className="mt-2 text-sm text-slate">{point.body}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
+          <Reveal className="order-first lg:order-last">
+            <img
+              src="/photos/team-collaboration.jpg"
+              alt=""
+              className="h-64 w-full rounded-card object-cover sm:h-80 lg:h-full"
+              loading="lazy"
+            />
+          </Reveal>
         </div>
       </section>
 
