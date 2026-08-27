@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ArrowDown } from "lucide-react";
 import GridLedgerBackground from "../components/GridLedgerBackground.jsx";
 import LedgerCard from "../components/LedgerCard.jsx";
 import Button from "../components/Button.jsx";
@@ -91,7 +93,7 @@ export default function Home() {
 
       {/* Platform snapshot */}
       <section className="relative overflow-hidden bg-porcelain py-20">
-        <GridLedgerBackground nodeCount={4} />
+        <GridLedgerBackground nodeCount={4} className="hidden sm:block" />
         <div className="relative mx-auto max-w-content px-6">
           <Reveal>
             <h2 className="font-display text-2xl font-bold text-ink lg:text-3xl">
@@ -103,7 +105,22 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <Reveal className="mt-10 flex flex-wrap items-center gap-3">
+          {/* Mobile: vertical stack, one stage per row */}
+          <Reveal className="mt-10 flex flex-col items-start gap-2 sm:hidden">
+            {LIFECYCLE.map((stage, i) => (
+              <div key={stage} className="flex flex-col items-start gap-2">
+                <span className="rounded-full border border-grid/20 bg-white px-4 py-2 font-mono text-xs text-grid">
+                  {stage}
+                </span>
+                {i < LIFECYCLE.length - 1 && (
+                  <ArrowDown size={14} className="ml-4 text-slate" strokeWidth={2} />
+                )}
+              </div>
+            ))}
+          </Reveal>
+
+          {/* Tablet and up: horizontal flow */}
+          <Reveal className="mt-10 hidden sm:flex sm:flex-wrap sm:items-center sm:gap-3">
             {LIFECYCLE.map((stage, i) => (
               <div key={stage} className="flex items-center gap-3">
                 <span className="rounded-full border border-grid/20 bg-white px-4 py-2 font-mono text-xs text-grid">
@@ -153,14 +170,16 @@ export default function Home() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
-              <Reveal
-                key={product.slug}
-                className="rounded-card border border-slate/10 p-6 transition-shadow hover:shadow-md"
-              >
-                <ProductIcon name={product.icon} size="sm" />
-                <p className="mt-3 font-mono text-xs uppercase tracking-wide text-grid">{product.role}</p>
-                <h3 className="mt-1 font-display text-lg font-semibold text-ink">{product.name}</h3>
-                <p className="mt-2 text-sm text-slate">{product.description}</p>
+              <Reveal key={product.slug}>
+                <Link
+                  to={`/products#${product.slug}`}
+                  className="block h-full rounded-card border border-slate/10 p-6 transition-shadow hover:shadow-md"
+                >
+                  <ProductIcon name={product.icon} size="sm" />
+                  <p className="mt-3 font-mono text-xs uppercase tracking-wide text-grid">{product.role}</p>
+                  <h3 className="mt-1 font-display text-lg font-semibold text-ink">{product.name}</h3>
+                  <p className="mt-2 text-sm text-slate">{product.description}</p>
+                </Link>
               </Reveal>
             ))}
           </div>

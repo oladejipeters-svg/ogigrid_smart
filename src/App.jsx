@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
+import ScrollButtons from "./components/ScrollButtons.jsx";
 import Home from "./pages/Home.jsx";
 import Platform from "./pages/Platform.jsx";
 import LocalAISecurity from "./pages/LocalAISecurity.jsx";
@@ -17,6 +19,7 @@ import NotFound from "./pages/NotFound.jsx";
 export default function App() {
   return (
     <div className="flex min-h-screen flex-col">
+      <ScrollToTop />
       <Navbar />
       <main className="flex-1">
         <Routes>
@@ -37,6 +40,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <ScrollButtons />
     </div>
   );
 }

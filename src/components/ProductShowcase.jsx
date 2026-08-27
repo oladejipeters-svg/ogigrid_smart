@@ -33,8 +33,6 @@ export default function ProductShowcase() {
   return (
     <section
       className="relative overflow-hidden bg-ink-muted py-14"
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
       aria-roledescription="carousel"
       aria-label="Product showcase"
     >
@@ -53,7 +51,11 @@ export default function ProductShowcase() {
           </button>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-card border border-white/10">
+        <div
+          className="mt-6 overflow-hidden rounded-card border border-white/10"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
           <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/5 px-4 py-2.5">
             <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
