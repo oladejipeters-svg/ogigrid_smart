@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { submitContactMessage } from "../lib/api.js";
 
-const initialForm = { name: "", email: "", subject: "", message: "", company_website: "" };
+const initialForm = { name: "", email: "", subject: "", message: "", do_not_fill_this_field: "" };
 
 export default function Contact() {
   const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Auto-revert to a blank form 5 seconds after a successful send, so a
+  // visitor who stays on the page isn't stuck on the confirmation screen
+  // forever with no way to send a second message.
+  useEffect(() => {
+    if (status !== "success") return;
+    const timer = setTimeout(() => setStatus("idle"), 5000);
+    return () => clearTimeout(timer);
+  }, [status]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -39,6 +48,13 @@ export default function Contact() {
         <p className="mt-3 text-slate">
           Someone from our team will get back to you shortly.
         </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-8 rounded-card border border-grid px-5 py-2.5 font-display text-sm font-semibold text-grid transition-colors hover:bg-grid/5"
+        >
+          Send another message
+        </button>
       </section>
     );
   }
@@ -67,8 +83,8 @@ export default function Contact() {
           {/* Honeypot — see the matching field in RequestDemo.jsx for the full note. */}
           <input
             type="text"
-            name="company_website"
-            value={form.company_website}
+            name="do_not_fill_this_field"
+            value={form.do_not_fill_this_field}
             onChange={handleChange}
             tabIndex={-1}
             autoComplete="off"

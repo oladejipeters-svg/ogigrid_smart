@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { submitDemoRequest } from "../lib/api.js";
@@ -11,7 +11,7 @@ const initialForm = {
   phone: "",
   role: "",
   message: "",
-  company_website: "", // honeypot — see the hidden field below and api/demo-request.js
+  do_not_fill_this_field: "", // honeypot — renamed from company_website, which Chrome/Edge autofill could silently populate, causing real submissions to be discarded as false-positive bot detections. See lib/validate.js.
 };
 
 const INSTITUTION_SIZES = ["Under 250 students", "250–1000 students", "1000–3000 students", "3000+ students"];
@@ -21,6 +21,15 @@ export default function RequestDemo() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Auto-revert to a blank form 5 seconds after a successful request, so a
+  // visitor who stays on the page isn't stuck on the confirmation screen
+  // forever with no way to submit a second request.
+  useEffect(() => {
+    if (status !== "success") return;
+    const timer = setTimeout(() => setStatus("idle"), 5000);
+    return () => clearTimeout(timer);
+  }, [status]);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -50,6 +59,13 @@ export default function RequestDemo() {
         <p className="mt-3 text-slate">
           Someone from our team will reach out to schedule a walkthrough tailored to your institution.
         </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-8 rounded-card border border-grid px-5 py-2.5 font-display text-sm font-semibold text-grid transition-colors hover:bg-grid/5"
+        >
+          Send another request
+        </button>
       </section>
     );
   }
@@ -81,8 +97,8 @@ export default function RequestDemo() {
                 as a visible field, never labeled for assistive tech. */}
             <input
               type="text"
-              name="company_website"
-              value={form.company_website}
+              name="do_not_fill_this_field"
+              value={form.do_not_fill_this_field}
               onChange={handleChange}
               tabIndex={-1}
               autoComplete="off"
