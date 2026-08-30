@@ -147,3 +147,5 @@ export default function Platform() {
     </div>
   );
 }
+
+// God is faithful
